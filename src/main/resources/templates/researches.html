@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Gestion du territoire</title>
+</head>
+<body>
+	<div>
+		<f:form modelAttribute="departementForm" method="post"
+			action="chargerDepartement">
+			<table>
+				<tr>
+					<td>Numéro du departement:</td>
+					<td><input path="numDep" /></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Afficher" /></td>
+				</tr>
+			</table>
+		</f:form>
+	</div>
+	<c:if test="${not empty departementForm.departement}">
+		<div>
+			<table>
+				<tr>
+					<td>Nom du departement:</td>
+					<td>${departementForm.departement.nomDep}</td>
+				</tr>
+				<tr>
+					<td>Chef Lieu:</td>
+					<td>${departementForm.departement.chefLieu}</td>
+				</tr>
+				<tr>
+					<td>Region:</td>
+					<td>${departementForm.departement.region}</td>
+				</tr>
+			</table>
+		</div>
+	</c:if>
+	<div>
+		<f:form action="/projet/">
+			<input type="submit" value="Retour" />
+		</f:form>
+	</div>
+</body>
+</html>
