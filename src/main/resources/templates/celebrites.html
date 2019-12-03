@@ -124,10 +124,10 @@
 						<td th:text="${celebrite.nationalite}">${celebrite.nationalite}</td>
 						<td th:text="${celebrite.nom}">${celebrite.nom}</td>
 						<td th:text="${celebrite.prenom}">${celebrite.prenom}</td>
-                        <td>
+                        <td> 
 							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a th:href="@{/user/updateCelebrite/} + ${celebrite.numCelebrite}"class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a th:href="@{/user/delete/} + ${celebrite.numCelebrite}"class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <a th:href="@{/edit/}+ ${celebrite.numCelebrite}"class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a th:href="@{/delete/} + ${celebrite.numCelebrite}"class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
                 </tbody>

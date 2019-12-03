@@ -2,6 +2,7 @@ package m2.proj.celebrite.dao;
 import java.util.List;
 
 import m2.proj.celebrite.entities.Celebrite;
+import m2.proj.celebrite.entities.User;
 
 public interface IDao {
 	
@@ -14,5 +15,12 @@ public interface IDao {
 	public void deleteCelebrity (int numCelebrite);
 	
 	public Celebrite findCelebrityByNum (int numCelebrite);
+	
+	//////////////////////LOGIN//////////////////////////
+	public void saveUser(User user);
+	public boolean isUserAlreadyPresent(User user);
+	
+	
+	
 	
 }

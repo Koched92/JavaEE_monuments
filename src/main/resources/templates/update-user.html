@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,9 +103,9 @@
 </head>
 <body>
 <div class="signup-form">
-	<form action="#" th:action="@{/save}" th:object="${AddCelebrity}" method="post">
-		<h2>Ajout d'une Célébrité</h2>
-		<p class="hint-text">Veuillez ajouter les informations de la célébrité</p>
+	<form action="#" th:action="@{/update/{numCelebrite}(numCelebrite=${celebrite.numCelebrite})}" th:object="${celebrite}" method="post">
+		<h2>Modification d'une Célébrité</h2>
+		<p class="hint-text">Veuillez modifier les informations de la célébrité</p>
         <div class="form-group">
 			<div class="row">
 				<div class="col-xs-6"><input type="text" th:field="*{nom}" class="form-control" name="nom" placeholder="Nom" required="required"></div>

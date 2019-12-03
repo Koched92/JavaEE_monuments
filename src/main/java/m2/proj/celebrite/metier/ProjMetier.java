@@ -9,6 +9,7 @@ import m2.proj.celebrite.dao.IDao;
 import m2.proj.celebrite.entities.Celebrite;
 import m2.proj.celebrite.entities.Departement;
 import m2.proj.celebrite.entities.Monument;
+import m2.proj.celebrite.entities.User;
 
 @Service
 public class ProjMetier implements IMetier {
@@ -19,6 +20,7 @@ public class ProjMetier implements IMetier {
 		this.dao = dao;
 	}
 
+	
 	public List<Celebrite> listAllCelebrity() {
 		return dao.listAllCelebrity();
 	}
@@ -39,6 +41,16 @@ public class ProjMetier implements IMetier {
 
 	public Celebrite findCelebrityByNum(int numCelebrite) {
 		return dao.findCelebrityByNum(numCelebrite);
+	}
+
+	@Override
+	public void saveUser(User user) {
+		 dao.saveUser(user);
+	}
+
+	@Override
+	public boolean isUserAlreadyPresent(User user) {
+		return false;
 	}
 
 }
