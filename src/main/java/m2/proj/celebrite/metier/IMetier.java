@@ -17,6 +17,11 @@ public interface IMetier {
 	public void deleteCelebrity (int numCelebrite);
 	
 	public Celebrite findCelebrityByNum (int numCelebrite);
+	public List<Monument> getListMonumentsByLieu(String nomCom);
+	public List<Departement> getListDepartements();
+	public List<Monument> getListMonuments();
+	public Monument findMonumentByCodeM (String codeM);
+
 	//////////////////////LOGIN//////////////////////////
 	public void saveUser(User user);
 	public boolean isUserAlreadyPresent(User user);

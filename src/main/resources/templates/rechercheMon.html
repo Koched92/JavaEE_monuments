@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Monuments</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/home">Monuments</a>
+    </div>
+    <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
+      <li><a href="/home">Home</a></li>
+      <li><a href="/departement">Département</a></li>
+      <li class="active"><a href="/monument">Monuments</a></li>
+      <li><a href="/celebrite">Célebrités</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Déconnexion</a></li>
+    </ul>
+  </div>
+</nav>
+<body>
+<div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Recherche <b>Monuments</b></h2></div>
+                    <div class="col-sm-4">
+                        <button onclick = "location.href='addCelebrite'" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Ajouter</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+				<form th:action="@{/rechercheM}" method="get">
+					<p> CodeMonument: <input type="text" name="codeM"></p>
+					<p><input type="submit" value ="submit"/></p>
+				</form>
+			</div>
+            <table class="table table-bordered">
+            
+                <thead>
+                    <tr>
+	                    <th>CodeMonument</th>
+	                    <th>Nom Monument</th>
+	                    <th>Proprietaire</th>
+	                    <th>Type Monument</th>
+	                    <th>Longitude</th>
+	                    <th>Latitude</th>                        
+	                    <th>Code Lieu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="monument : ${monument}">
+						<td th:text="${monument.codeM}">${monument.codeM}</td>
+						<td th:text="${monument.nomM}">${monument.nomM}</td>
+						<td th:text="${monument.proprietaire}">${monument.proprietaire}</td>
+						<td th:text="${monument.typeMonument}">${monument.typeMonument}</td>
+						<td th:text="${monument.longitude}">${monument.longitude}</td>
+						<td th:text="${monument.latitude}">${monument.latitude}</td>
+						<td th:text="${monument.codeLieu}">${monument.codeLieu}</td>
+                  
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>     
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -40,14 +40,20 @@
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Liste <b>Célébrités</b></h2></div>
+                    <div class="col-sm-8"><h2>Recherche <b>Célébrités</b></h2></div>
                     <div class="col-sm-4">
                         <button onclick = "location.href='addCelebrite'" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Ajouter</button>
-                        <button onclick = "location.href='recherche'" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Chercher</button>
                     </div>
                 </div>
             </div>
+            <div>
+				<form th:action="@{/rechercher}" method="get">
+					<p> NumCelebrite: <input type="text" name="numCelebrite"></p>
+					<p><input type="submit" value ="submit"/></p>
+				</form>
+			</div>
             <table class="table table-bordered">
+            
                 <thead>
                     <tr>
 	                    <th>NumCélébrité</th>
@@ -59,7 +65,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="celebrite : ${ListCelebrity}">
+                    <tr th:each="celebrite : ${celebrite}">
 						<td th:text="${celebrite.numCelebrite}">${celebrite.numCelebrite}</td>
 						<td th:text="${celebrite.epoque}">${celebrite.epoque}</td>
 						<td th:text="${celebrite.nationalite}">${celebrite.nationalite}</td>
@@ -77,3 +83,12 @@
     </div>     
 </body>
 </html>
+
+
+
+
+
+
+
+
+

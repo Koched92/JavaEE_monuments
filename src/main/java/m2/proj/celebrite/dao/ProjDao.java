@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.HashSet;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,6 +18,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import m2.proj.celebrite.entities.Celebrite;
+import m2.proj.celebrite.entities.Monument;
+import m2.proj.celebrite.entities.Departement;
 import m2.proj.celebrite.entities.Role;
 import m2.proj.celebrite.entities.User;
 import m2.proj.celebrite.repository.RoleRepository;
@@ -23,6 +27,8 @@ import m2.proj.celebrite.repository.UserRepository;
 
 @Repository
 public class ProjDao implements IDao {
+	@PersistenceContext
+	private EntityManager em; 
 	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
 	@Autowired
@@ -40,9 +46,6 @@ public class ProjDao implements IDao {
 
 	public List<Celebrite> listAllCelebrity() {
 		String sql = "SELECT num_celebrite, epoque, nationalite, nom, prenom FROM celebrite";
-		
-		
-		
 		List<Celebrite> list = namedParameterJdbcTemplate.query(sql, getSqlParameterByModel(null), new CelebrityMapper());
 		return list;
 	}
@@ -106,10 +109,35 @@ public class ProjDao implements IDao {
 
 	@Override
 	public boolean isUserAlreadyPresent(User user) {
-		// Try to implement this method, as assignment.
 		return false;
 	}
 
+	@Override
+	public List<Monument> getListMonumentsByLieu(String nomCom) {
+		Query req = em.createQuery("select m from lieu m where m.lieu.nomCom =:x");
+		req.setParameter("x", nomCom);
+		return req.getResultList();
+	}
+	
+	
+	public List<Departement> getListDepartements() {
+		Query req = em.createQuery("select d from Departement d"); // JPQL
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Monument> getListMonuments() {
+		Query req = em.createQuery("select m from Monument m"); // JPQL
+		return req.getResultList();
+	}
+
+	@Override
+	public Monument findMonumentByCodeM(String codeM) {
+		Monument monument = em.find(Monument.class, codeM);
+		return monument;
+	
+		
+	}
 
 }
 

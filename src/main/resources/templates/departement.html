@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Monuments</title>
   <meta charset="utf-8">
@@ -15,8 +15,8 @@
       <a class="navbar-brand" href="/home">Monuments</a>
     </div>
     <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="active"><a href="/home">Home</a></li>
-      <li><a href="/departement">Département</a></li>
+      <li><a href="/home">Home</a></li>
+      <li class="active"><a href="/departement">Département</a></li>
       <li><a href="/monument">Monuments</a></li>
       <li><a href="/celebrite">Célebrités</a></li>
     </ul>
@@ -25,31 +25,30 @@
     </ul>
   </div>
 </nav>
+
+
 <body>
 
+
+<h1>Département</h1>
+
+<div class="container">
+
+<table  class ="table table-striped ">
+
+<thead>
+<tr>
+<th>dep</th><th>chefLieu</th><th>nomDep</th><th>reg</th>
+</thead>
+<tbody>
+   <tr th:each="departement : ${listDepartement}">
+	<td th:text="${departement.dep}">${departement.dep}</td>
+	<td th:text="${departement.chefLieu}">${departement.chefLieu}</td>
+	<td th:text="${departement.nomDep}">${departement.nomDep}</td>
+	<td th:text="${departement.reg}">${departement.reg}</td>
+   </tr>
+</tbody>
+</table>
+</div>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<body th:style="'background-image:url(' + @{/images/OLBKWG0.jpg} + ');'">
-
-</body>
-
+</html>

@@ -17,12 +17,12 @@ public class Monument{
 	private String typeMonument;
 	private Float longitude;
 	private Float latitude;
-	private String codeLieu;
+	public String codeLieu;
 	@ManyToMany(mappedBy = "monuments")
 	private List<Celebrite> celebrites;
 	
 	@ManyToOne 
-	private Lieu lieu;
+	public Lieu lieu;
 
 	public String getCodeM() {
 		return codeM;

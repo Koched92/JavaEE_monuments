@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import m2.proj.celebrite.entities.Celebrite;
+import m2.proj.celebrite.entities.Monument;
+import m2.proj.celebrite.entities.Departement;
+
 import m2.proj.celebrite.entities.User;
 import m2.proj.celebrite.metier.IMetier;
 import m2.proj.celebrite.metier.ProjMetier;
@@ -31,6 +34,11 @@ public class ProjectController {
 	@Autowired
 	ProjMetier metier;
 	
+	@RequestMapping(value="/recherche")
+	public String index()
+	{
+		return "recherche";
+	}
 	
 	@RequestMapping(value="/celebrite", method = RequestMethod.GET)
 	public String Celebrite(Model model){
@@ -46,19 +54,6 @@ public class ProjectController {
 		return "addCelebrite";
 	}
 	
-	/*
-	 * @RequestMapping( value="/edit") public String UpdateCelebrite(int
-	 * numCelebrite, Model model) { Celebrite celeb=
-	 * metier.findCelebrityByNum(numCelebrite);
-	 * model.addAttribute("UpdateCelebrite",celeb); return("addCelebrite"); }
-	 */
-	/*
-	 * @RequestMapping(value="/updateCelebrite/{numCelebrite}", method =
-	 * RequestMethod.GET) public String updateCelebrite(@PathVariable int
-	 * numCelebrite) throws Exception { ModelAndView model = new ModelAndView();
-	 * Celebrite celebrite = metier.findCelebrityByNum(numCelebrite);
-	 * model.addObject("addCelebrite", celebrite); return "addCelebrite"; }
-	 */
 	@GetMapping("/edit/{numCelebrite}")
 	public String showUpdateForm(@PathVariable("numCelebrite") int numCelebrite, Model model) {
 	    Celebrite celebrite = metier.findCelebrityByNum(numCelebrite);
@@ -96,8 +91,51 @@ public class ProjectController {
 	    return ("redirect:/celebrite");
 	}
 	
+
+	  @RequestMapping(value="/rechercher", method = RequestMethod.GET)
+	  public String rechercheCelebrite(Model model, int numCelebrite)
+	  { 
+		  Celebrite celeb=metier.findCelebrityByNum(numCelebrite);
+	  model.addAttribute("celebrite", celeb); 
+	  
+	  
+	  return "recherche"; 
+	  }
+	
+	  @RequestMapping(value="/monument",method = RequestMethod.GET)
+	  public String Monument(Model model){
+	  	List<Monument> monument=metier.getListMonuments();
+	  
+	  	model.addAttribute("listMonument",monument);
+	  	return "monument";
+	  }
+	  
+	  @RequestMapping(value="/departement",method = RequestMethod.GET)
+	  public String Departement(Model model){
+	  	List<Departement> departement=metier.getListDepartements();
+	  
+	  	model.addAttribute("listDepartement",departement);
+	  	return "departement";
+	  }
+	  
+	  @RequestMapping(value="/rechercheMon")
+		public String rechercheMonument()
+		{
+			return "rechercheMon";
+		}
+	  
+	  @RequestMapping(value="/rechercheM", method = RequestMethod.GET)
+	  public String rechercheMonument(Model model, String codeM)
+	  { 
+		  Monument monument=metier.findMonumentByCodeM(codeM);
+	  model.addAttribute("monument", monument); 
+	  
+	  return "rechercheMon"; 
+	  }
+	  
+
 	///////////////////////////////////////LOGIN CONTROLLER//////////////////////////////////::
-	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public ModelAndView login() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("login"); // resources/template/login.html
@@ -120,7 +158,7 @@ public class ProjectController {
 		return modelAndView;
 	}
 	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public ModelAndView registerUser(@Valid User user, BindingResult bindingResult, ModelMap modelMap) {
+	public String registerUser(@Valid User user, BindingResult bindingResult, ModelMap modelMap) {
 		ModelAndView modelAndView = new ModelAndView();
 		// Check for the validations
 		if(bindingResult.hasErrors()) {
@@ -137,9 +175,8 @@ public class ProjectController {
 		}
 		modelAndView.addObject("user", new User());
 		modelAndView.setViewName("register");
-		return modelAndView;
+		return "/login";
 	}
-	
 	
   }
 

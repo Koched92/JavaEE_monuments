@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Monuments</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/home">Monuments</a>
+    </div>
+    <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
+      <li><a href="/home">Home</a></li>
+      <li><a href="/departement">Département</a></li>
+      <li class="active"><a href="/monument">Monuments</a></li>
+      <li><a href="/celebrite">Célebrités</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Déconnexion</a></li>
+    </ul>
+  </div>
+</nav>
+
+<body>
+
+
+<h1>Monument</h1>
+
+<div class="container">
+
+<table  class ="table table-striped ">
+ <div class="col-sm-4">
+                        <button onclick = "location.href='rechercheMon'" type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Chercher</button>
+                    </div>
+<thead>
+<tr>
+<th>code Monument</th><th>nom</th><th>proprietaire</th><th>type</th><th>longitude</th><th>latitude</th><th>lieu</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="monument:${listMonument}">  
+ 	 	<td th:text="${monument.codeM}"> 
+   		<td th:text="${monument.nomM}"></td>
+    	<td th:text="${monument.proprietaire}"></td>
+     	<td th:text="${monument.typeMonument}"></td>
+      	<td th:text="${monument.longitude}"></td>
+      	<td th:text="${monument.latitude}"></td>
+      	<td th:text="${monument.lieu.codeInsee}"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

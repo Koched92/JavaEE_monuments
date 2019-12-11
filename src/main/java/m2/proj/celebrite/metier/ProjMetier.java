@@ -53,4 +53,29 @@ public class ProjMetier implements IMetier {
 		return false;
 	}
 
+
+	@Override
+	public List<Monument> getListMonumentsByLieu(String nomCom) {
+		return dao.getListMonumentsByLieu(nomCom);
+
+	}
+
+
+	@Override
+	public List<Departement> getListDepartements() {
+		return dao.getListDepartements();
+	}
+
+
+	@Override
+	public List<Monument> getListMonuments() {
+		return dao.getListMonuments();
+	}
+
+
+	@Override
+	public Monument findMonumentByCodeM(String codeM) {
+		return dao.findMonumentByCodeM(codeM);
+	}
+
 }

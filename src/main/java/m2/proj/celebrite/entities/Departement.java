@@ -22,6 +22,13 @@ public class Departement implements Serializable {
 	private List<Lieu> lieu ;
 
 	
+	
+	
+	public Departement() {
+		super();
+	}
+
+
 	public Departement(String dep, String chefLieu, String nomDep, String reg) {
 		super();
 		this.dep = dep;
