@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import m2.proj.celebrite.entities.Monument;
 import m2.proj.celebrite.metier.ProjMetier;
-
+//commit
 @SpringBootApplication
 public class ProjetMonumentsApplication {
 
